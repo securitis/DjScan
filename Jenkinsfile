@@ -31,26 +31,7 @@ pipeline {
          sh 'bash owasp-dependency-check.sh'       
          sh 'sudo cp -r /var/lib/jenkins/OWASP-Dependency-Check/reports /var/lib/jenkins/workspace/CICD' 
       }
-    }   
-     
-   
-   stage ('Build') {
-      steps {
-      sh 'mvn clean package'
-     }
-    }
-
-
-    stage ('Deploy') {
-     steps {
-            sh 'chmod +777 /var/lib/jenkins/workspace/CICD'
-            sh 'sudo cp -r /var/lib/jenkins/workspace/CICD /var/www/html' 
-            //sh 'chmod +777 /var/lib/jenkins/workspace/CICD/target/WebApp'
-            //sh 'ls /var/www/html'
-            //sh 'sudo cp -r /var/lib/jenkins/OWASP-Dependency-Check/reports /var/www/html'
-       }
-    }
-      
+    }       
     
   }
 } 
