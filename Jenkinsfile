@@ -44,8 +44,8 @@ pipeline {
 
     stage ('Report') {
      steps {
-            sh 'chmod +777 /var/lib/jenkins/workspace/CICD'
-            sh 'sudo cp -r /var/lib/jenkins/workspace/CICD /var/www/html' 
+            //sh 'chmod +777 /var/lib/jenkins/workspace/CICD'
+            //sh 'sudo cp -r /var/lib/jenkins/workspace/CICD /var/www/html' 
             sh 'sudo cp -r /var/lib/jenkins/workspace/DJScan/./dependency-check-report.html  /var/www/html/DJScan'
        }
     }
