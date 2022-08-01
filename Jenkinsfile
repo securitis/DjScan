@@ -35,11 +35,11 @@ pipeline {
             }
         }     
         
-    stage ('Scan-Checkout') {
+   /* stage ('Scan-Checkout') {
       steps {
       sh 'mvn clean package'
      }
-    }
+    }*/
 
 
     stage ('Report') {
