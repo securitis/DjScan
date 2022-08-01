@@ -22,7 +22,22 @@ pipeline {
       }
     } 
     
-  stage ('OWASP Dependency Check') {
+    stages {
+        stage ('OWASP Dependency-Check Vulnerabilities') {
+            steps {
+                dependencyCheck additionalArguments: ''' 
+                    -o "./" 
+                    -s "./"
+                    -f "ALL" 
+                    --prettyPrint''', odcInstallation: 'dcheck'
+
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+            }
+        }     
+    }
+    
+    
+  /*stage ('OWASP Dependency Check') {
       steps {
          sh 'echo Owasp Dependency Check'
          sh 'rm owasp* || true'
@@ -31,7 +46,7 @@ pipeline {
          sh 'bash owasp-dependency-check.sh'       
          sh 'sudo cp -r /var/lib/jenkins/OWASP-Dependency-Check/reports /var/lib/jenkins/workspace/CICD' 
       }
-    }       
+    } */      
     
   }
 } 
