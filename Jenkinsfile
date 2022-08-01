@@ -31,9 +31,28 @@ pipeline {
                     --prettyPrint''', odcInstallation: 'dcheck'
 
                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+                
             }
         }     
         
+    stage ('Scan-Checkout') {
+      steps {
+      sh 'mvn clean package'
+     }
+    }
+
+
+    stage ('Report') {
+     steps {
+            sh 'chmod +777 /var/lib/jenkins/workspace/CICD'
+            sh 'sudo cp -r /var/lib/jenkins/workspace/CICD /var/www/html' 
+            sh 'sudo cp -r /var/lib/jenkins/workspace/DJScan/./dependency-check-report.html  /var/www/html/DJScan'
+       }
+    }
+   
+    
+    
+    
   /*stage ('OWASP Dependency Check') {
       steps {
          sh 'echo Owasp Dependency Check'
